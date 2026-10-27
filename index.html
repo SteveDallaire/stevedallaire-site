@@ -5,175 +5,248 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Steve Dallaire · Formation IA en entreprise · Estrie</title>
 <meta name="description" content="Formation à l'intelligence artificielle sur place, pour les employés débutants des entreprises de l'Estrie. Bâtie sur vos vraies tâches.">
+<meta name="theme-color" content="#0e1830">
 <meta property="og:title" content="Steve Dallaire · Formation IA en entreprise">
 <meta property="og:description" content="L'IA au travail, expliquée simplement à toute votre équipe. Sur place, en Estrie.">
 <meta property="og:image" content="img/steve-assis-sourire.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <a class="brand" href="#accueil"><b>Steve Dallaire</b><span>Formation IA · Estrie</span></a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#accueil" aria-label="Steve Dallaire, retour en haut">
+      <span class="mono" aria-hidden="true">SD</span>
+      <span class="brand-txt"><b>Steve Dallaire</b><small>Formation IA · Estrie</small></span>
+    </a>
     <nav aria-label="Navigation principale">
       <a href="#formations">Formations</a>
       <a href="#deroulement">Déroulement</a>
       <a href="#subventions">Subventions</a>
       <a href="#apropos">À propos</a>
       <a href="#faq">FAQ</a>
-      <a class="btn primary" href="#contact">Planifier un appel</a>
     </nav>
+    <a class="btn btn-glow sm" href="#contact">Planifier un appel</a>
   </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
 <main>
+<!-- HERO -->
 <section class="hero" id="accueil">
-  <div class="wrap">
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap hero-in">
     <div class="hero-text">
-      <span class="eyebrow">Formation en entreprise, sur place</span>
-      <h1>L'IA au travail, <em>expliquée simplement</em> à toute votre équipe.</h1>
-      <p class="lead">Je me déplace dans votre entreprise et je montre à vos employés comment utiliser l'IA sur leurs vraies tâches. Pas de jargon. Pas besoin d'être bon en informatique.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="#contact">Planifier un appel gratuit</a>
-        <a class="btn" href="#formations">Voir les formations</a>
+      <span class="pill"><span class="dot"></span>Formation en entreprise, sur place en Estrie</span>
+      <h1 class="reveal">L'IA au travail,<br><em>expliquée simplement</em><br>à toute votre équipe.</h1>
+      <p class="lead reveal">Je me déplace dans votre entreprise et je montre à vos employés comment utiliser l'IA sur leurs vraies tâches. Pas de jargon. Pas besoin d'être bon en informatique.</p>
+      <div class="cta-row reveal">
+        <a class="btn btn-glow" href="#contact">Planifier un appel gratuit <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#formations">Voir les formations</a>
       </div>
-      <div class="reassure"><span>Jusqu'à 12 personnes</span><span>Adaptée à votre entreprise</span><span>Admissible à des subventions</span></div>
+      <ul class="reassure reveal">
+        <li>Jusqu'à 12 personnes</li><li>Adaptée à votre entreprise</li><li>Admissible à des subventions</li>
+      </ul>
     </div>
-    <div class="hero-visual">
-      <img src="img/steve-assis-sourire.jpg" alt="Steve Dallaire, formateur, souriant, assis dans un bureau lumineux">
-      <div class="bubble" aria-label="Exemple d'exercice">
-        <small>EXERCICE TYPE · SERVICE À LA CLIENTÈLE</small>
-        <div class="q">« Voici le courriel d'un client mécontent. Aide-moi à lui répondre poliment et à lui offrir un rabais de 10 %. »</div>
-        <div class="a">Une première version claire en quelques secondes, que l'employé relit et ajuste.</div>
+
+    <div class="hero-visual reveal">
+      <div class="photo-frame">
+        <img src="img/steve-assis-sourire.jpg" alt="Steve Dallaire, formateur, souriant, assis dans un bureau lumineux" width="1000" height="1500" fetchpriority="high">
       </div>
+      <div class="demo" id="demo" aria-label="Démonstration : exemples de tâches faites avec l'IA">
+        <div class="demo-bar">
+          <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="demo-title">Exercice type</span>
+          <span class="demo-role" id="demoRole">Service à la clientèle</span>
+        </div>
+        <div class="demo-body">
+          <div class="msg me"><span id="demoPrompt"></span><span class="caret" aria-hidden="true"></span></div>
+          <div class="msg ai" id="demoAi" hidden>
+            <span class="ai-tag" aria-hidden="true">IA</span>
+            <span id="demoAnswer"></span>
+          </div>
+        </div>
+        <div class="demo-foot">
+          <span>Temps gagné</span><b id="demoGain">25 min</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-label="Outils abordés">
+    <div class="marquee-track">
+      <span>ChatGPT</span><span>Microsoft Copilot</span><span>Claude</span><span>Gemini</span><span>Courriels</span><span>Comptes rendus</span><span>Excel</span><span>Dépannage</span><span>Sécurité</span>
+      <span aria-hidden="true">ChatGPT</span><span aria-hidden="true">Microsoft Copilot</span><span aria-hidden="true">Claude</span><span aria-hidden="true">Gemini</span><span aria-hidden="true">Courriels</span><span aria-hidden="true">Comptes rendus</span><span aria-hidden="true">Excel</span><span aria-hidden="true">Dépannage</span><span aria-hidden="true">Sécurité</span>
     </div>
   </div>
 </section>
 
-<section class="band promises" aria-label="Ce qui distingue la formation">
-  <div class="wrap">
-    <div><span class="big">Chez vous</span><h3>Je viens sur place</h3><p>Dans votre salle de réunion, avec vos ordinateurs. Personne n'a à se déplacer.</p></div>
-    <div><span class="big">Vos tâches</span><h3>Bâtie sur votre réalité</h3><p>Un questionnaire avant ma visite me dit ce que vos employés font chaque jour. On pratique sur ça.</p></div>
-    <div><span class="big">15 ans +</span><h3>Un vrai pédagogue</h3><p>J'enseigne l'informatique depuis plus de 15 ans. Expliquer simplement, c'est mon métier.</p></div>
+<!-- PROMESSES -->
+<section class="promises">
+  <div class="wrap promises-in">
+    <article class="promise reveal">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+      <h3>Je viens chez vous</h3>
+      <p>Dans votre salle de réunion, avec vos ordinateurs. Personne n'a à se déplacer.</p>
+    </article>
+    <article class="promise reveal">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6m-7 3h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm1 6 2 2 4-4"/></svg>
+      <h3>Bâtie sur vos tâches</h3>
+      <p>Un questionnaire avant ma visite me dit ce que vos employés font chaque jour. On pratique sur ça.</p>
+    </article>
+    <article class="promise reveal">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+      <h3>Un vrai pédagogue</h3>
+      <p>J'enseigne l'informatique depuis plus de 15 ans. Expliquer simplement, c'est mon métier.</p>
+    </article>
   </div>
 </section>
 
-<section class="block" id="pourqui">
-  <div class="wrap">
-    <div class="section-head">
+<!-- POUR QUI -->
+<section class="section" id="pourqui">
+  <div class="wrap split">
+    <div class="section-head reveal">
       <span class="eyebrow">Pour qui</span>
-      <h2>Vos employés n'ont jamais touché à ChatGPT? Parfait.</h2>
+      <h2>Vos employés n'ont jamais touché à ChatGPT? <em>Parfait.</em></h2>
       <p>La formation s'adresse aux gens qui ont entendu parler de l'IA mais qui ne savent pas par où commencer, ou qui ont un peu peur de mal faire.</p>
+      <ul class="roles">
+        <li>Adjointes et adjoints administratifs</li><li>Service à la clientèle</li><li>Comptabilité et paie</li><li>Ventes</li><li>Ressources humaines</li><li>Propriétaires de PME</li><li>Équipes de bureau en usine</li>
+      </ul>
     </div>
-    <div class="roles">
-      <span>Adjointes et adjoints administratifs</span><span>Service à la clientèle</span><span>Comptabilité et paie</span><span>Ventes</span><span>Ressources humaines</span><span>Propriétaires de PME</span><span>Équipes de bureau en usine</span>
-    </div>
-    <div class="example">
-      <div><span class="lbl">Avant</span><span class="t">30 min</span><p>Rédiger le compte rendu de la réunion d'équipe à partir de notes en vrac.</p></div>
-      <div><span class="lbl">Après la formation</span><span class="t">5 min</span><p>L'employé colle ses notes, demande un compte rendu clair, puis relit et corrige. Exemple illustratif.</p></div>
+    <div class="compare reveal" id="compare">
+      <div class="compare-tabs" role="tablist" aria-label="Choisir une tâche">
+        <button role="tab" aria-selected="true" data-i="0">Compte rendu</button>
+        <button role="tab" aria-selected="false" data-i="1">Courriel difficile</button>
+        <button role="tab" aria-selected="false" data-i="2">Formule Excel</button>
+      </div>
+      <p class="compare-task" id="cmpTask">Rédiger le compte rendu de la réunion d'équipe à partir de notes en vrac.</p>
+      <div class="bar-row"><span>Avant</span><div class="bar"><i id="barBefore" style="--w:100%"></i></div><b id="cmpBefore">30 min</b></div>
+      <div class="bar-row after"><span>Après</span><div class="bar"><i id="barAfter" style="--w:17%"></i></div><b id="cmpAfter">5 min</b></div>
+      <p class="fine">Exemples illustratifs. L'employé relit et corrige toujours le résultat.</p>
     </div>
   </div>
 </section>
 
-<section class="block" id="formations" style="background:var(--paper)">
+<!-- FORMATIONS -->
+<section class="section tint" id="formations">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head center reveal">
       <span class="eyebrow">Formations</span>
-      <h2>Trois façons de travailler ensemble</h2>
+      <h2>Trois façons de <em>travailler ensemble</em></h2>
       <p>Le prix est pour le groupe, pas par personne. Le questionnaire, l'appel de préparation et l'aide-mémoire sont toujours inclus.</p>
     </div>
     <div class="offers">
-      <div class="offer">
+      <article class="offer reveal">
         <h3>Demi-journée</h3>
-        <div class="price">1 200 $ <small>/ groupe</small></div>
-        <p>Pour découvrir l'IA et repartir avec les bons réflexes.</p>
+        <p class="offer-sub">Pour découvrir l'IA et repartir avec les bons réflexes.</p>
+        <div class="price">1 200 $<small>/ groupe</small></div>
         <ul><li>3 heures sur place</li><li>Jusqu'à 12 personnes</li><li>Sécurité et premiers usages</li><li>Aide-mémoire imprimable</li></ul>
-      </div>
-      <div class="offer featured">
+        <a class="btn btn-ghost-dark" href="#contact">Demander une date</a>
+      </article>
+      <article class="offer featured reveal">
         <span class="tag">La plus choisie</span>
         <h3>Journée complète</h3>
-        <div class="price">2 000 $ <small>/ groupe</small></div>
-        <p>La formation complète, avec beaucoup de pratique sur vos dossiers.</p>
+        <p class="offer-sub">La formation complète, avec beaucoup de pratique sur vos dossiers.</p>
+        <div class="price">2 000 $<small>/ groupe</small></div>
         <ul><li>6 heures sur place</li><li>Jusqu'à 12 personnes</li><li>60 % de pratique sur vos vraies tâches</li><li>Questionnaire + appel de 30 min</li><li>Aide-mémoire adapté à votre entreprise</li></ul>
-      </div>
-      <div class="offer">
+        <a class="btn btn-glow" href="#contact">Réserver une journée</a>
+      </article>
+      <article class="offer reveal">
         <h3>Suivi</h3>
-        <div class="price">250 $ <small>/ heure</small></div>
-        <p>Quelques semaines plus tard, on règle les questions qui sont apparues.</p>
+        <p class="offer-sub">Quelques semaines plus tard, on règle les questions qui sont apparues.</p>
+        <div class="price">250 $<small>/ heure</small></div>
         <ul><li>En personne ou à distance</li><li>Pour le groupe ou un service</li><li>Idéal après une journée complète</li></ul>
+        <a class="btn btn-ghost-dark" href="#contact">En savoir plus</a>
+      </article>
+    </div>
+    <div class="pilot reveal">
+      <div>
+        <span class="eyebrow">Projet pilote</span>
+        <p>Je réserve quelques journées à <b>800 $</b> aux premières entreprises de l'Estrie qui acceptent de me donner leurs commentaires et un témoignage.</p>
       </div>
+      <a class="btn btn-glow" href="#contact">Réserver une place</a>
     </div>
-    <div class="pilot">
-      <p><b>Projet pilote :</b> je réserve quelques journées à <b>800 $</b> aux premières entreprises de l'Estrie qui acceptent de me donner leurs commentaires et un témoignage.</p>
-      <a class="btn primary" href="#contact">Réserver une place</a>
-    </div>
-    <p style="color:var(--ink-soft);font-size:.92rem">Déplacement inclus à moins de 50 km de Sherbrooke. Taxes en sus.</p>
+    <p class="note">Déplacement inclus à moins de 50 km de Sherbrooke. Taxes en sus.</p>
   </div>
 </section>
 
-<section class="block" id="deroulement">
-  <div class="wrap">
-    <div class="steps-wrap">
-      <img src="img/steve-reflexion.jpg" alt="Steve Dallaire, pensif, prépare une formation">
-      <div style="display:flex;flex-direction:column;gap:32px;min-width:0">
-        <div class="section-head">
-          <span class="eyebrow">Déroulement</span>
-          <h2>De votre premier appel à la journée sur place</h2>
-        </div>
-        <ol class="steps">
-          <li><div><span class="when">Semaine 1</span><h3>Un appel de 30 minutes</h3><p>Vous me parlez de votre entreprise, de vos équipes et de ce qui vous fait perdre du temps.</p></div></li>
-          <li><div><span class="when">Semaine 2</span><h3>Un court questionnaire aux employés</h3><p>Cinq minutes pour chacun. Je sais ainsi quelles tâches pratiquer et quel est leur niveau.</p></div></li>
-          <li><div><span class="when">Jour J</span><h3>La formation dans vos locaux</h3><p>Courte théorie, puis beaucoup de pratique sur des exemples tirés de votre quotidien.</p></div></li>
-          <li><div><span class="when">Après</span><h3>Un aide-mémoire et du suivi</h3><p>Chaque participant repart avec un aide-mémoire. Je reste disponible pour les questions.</p></div></li>
-        </ol>
+<!-- DÉROULEMENT -->
+<section class="section" id="deroulement">
+  <div class="wrap steps-wrap">
+    <figure class="steps-photo reveal">
+      <img src="img/steve-reflexion.jpg" alt="Steve Dallaire, pensif, prépare une formation" width="900" height="1350" loading="lazy">
+      <figcaption>« Chaque formation est préparée pour l'équipe qui la reçoit. »</figcaption>
+    </figure>
+    <div>
+      <div class="section-head reveal">
+        <span class="eyebrow">Déroulement</span>
+        <h2>De votre premier appel à <em>la journée sur place</em></h2>
       </div>
+      <ol class="steps" id="steps">
+        <li class="reveal"><span class="when">Semaine 1</span><h3>Un appel de 30 minutes</h3><p>Vous me parlez de votre entreprise, de vos équipes et de ce qui vous fait perdre du temps.</p></li>
+        <li class="reveal"><span class="when">Semaine 2</span><h3>Un court questionnaire aux employés</h3><p>Cinq minutes pour chacun. Je sais ainsi quelles tâches pratiquer et quel est leur niveau.</p></li>
+        <li class="reveal"><span class="when">Jour J</span><h3>La formation dans vos locaux</h3><p>Courte théorie, puis beaucoup de pratique sur des exemples tirés de votre quotidien.</p></li>
+        <li class="reveal"><span class="when">Après</span><h3>Un aide-mémoire et du suivi</h3><p>Chaque participant repart avec un aide-mémoire. Je reste disponible pour les questions.</p></li>
+      </ol>
     </div>
   </div>
 </section>
 
-<section class="block" id="contenu" style="background:var(--paper)">
+<!-- CONTENU -->
+<section class="section tint" id="contenu">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Ce qu'on apprend</span>
-      <h2>Des compétences utiles dès le lendemain</h2>
+      <h2>Des compétences <em>utiles dès le lendemain</em></h2>
       <p>Le contenu change selon vos réponses au questionnaire. Voici les sujets les plus demandés.</p>
     </div>
-    <div class="modules">
-      <div class="first"><span class="eyebrow">On commence toujours par là</span><h3>Sécurité et confidentialité</h3><p>Ce qu'on peut donner à l'IA, ce qu'on ne donne jamais, et comment vérifier ses réponses.</p></div>
-      <div><h3>Bien demander</h3><p>Écrire une demande claire et obtenir une réponse utile du premier coup.</p></div>
-      <div><h3>Courriels et documents</h3><p>Rédiger, corriger, traduire et mettre en forme plus vite.</p></div>
-      <div><h3>Résumer et analyser</h3><p>Comprendre un long document, un tableau ou une série de courriels.</p></div>
-      <div><h3>Se dépanner seul</h3><p>Coller un message d'erreur et obtenir des étapes simples pour régler le problème.</p></div>
-      <div><h3>Les assistants d'entreprise</h3><p>Ce que les outils intégrés à Microsoft 365 ou Google peuvent faire pour vous.</p></div>
+    <div class="bento">
+      <article class="tile tile-lead reveal">
+        <span class="eyebrow light">On commence toujours par là</span>
+        <h3>Sécurité et confidentialité</h3>
+        <p>Ce qu'on peut donner à l'IA, ce qu'on ne donne jamais, et comment vérifier ses réponses.</p>
+        <svg class="tile-art" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 10 100 26v30c0 26-17 45-40 54C37 101 20 82 20 56V26z"/><path d="m44 60 11 11 22-24"/></svg>
+      </article>
+      <article class="tile reveal"><h3>Bien demander</h3><p>Écrire une demande claire et obtenir une réponse utile du premier coup.</p></article>
+      <article class="tile reveal"><h3>Courriels et documents</h3><p>Rédiger, corriger, traduire et mettre en forme plus vite.</p></article>
+      <article class="tile reveal"><h3>Résumer et analyser</h3><p>Comprendre un long document, un tableau ou une série de courriels.</p></article>
+      <article class="tile reveal"><h3>Se dépanner seul</h3><p>Coller un message d'erreur et obtenir des étapes simples pour régler le problème.</p></article>
+      <article class="tile tile-wide reveal"><h3>Les assistants d'entreprise</h3><p>Ce que les outils intégrés à Microsoft 365 ou Google peuvent faire pour vous.</p>
+        <div class="chips"><span>ChatGPT</span><span>Microsoft Copilot</span><span>Claude</span><span>Gemini</span></div>
+      </article>
     </div>
-    <div class="tools"><b>Outils abordés selon vos besoins :</b> ChatGPT · Microsoft Copilot · Claude · Gemini</div>
   </div>
 </section>
 
-<section class="band subsidy" id="subventions">
-  <div class="wrap">
-    <div class="section-head">
+<!-- SUBVENTIONS -->
+<section class="dark subsidy" id="subventions">
+  <div class="aurora soft" aria-hidden="true"></div>
+  <div class="wrap subsidy-in">
+    <div class="section-head reveal">
       <span class="eyebrow">Subventions</span>
-      <h2>Services Québec peut payer une partie de la formation</h2>
+      <h2>Services Québec peut payer <em>une partie de la formation</em></h2>
       <p>Le programme MFOR aide les entreprises à former leurs employés. Selon votre situation, une partie des honoraires peut être remboursée. Je vous donne les documents pour faire la demande, qui doit être faite avant la formation.</p>
     </div>
-    <div class="calc" aria-label="Estimation du coût">
-      <div class="row">
+    <div class="calc reveal" aria-label="Estimation du coût">
+      <div class="calc-row">
         <label for="n">Nombre d'employés <output id="nOut">10</output></label>
         <input id="n" type="range" min="4" max="12" value="10">
       </div>
-      <div class="row">
-        <label>Formation</label>
-        <div class="seg" id="fmt">
+      <div class="calc-row">
+        <span class="lbl" id="fmtLbl">Formation</span>
+        <div class="seg" id="fmt" role="group" aria-labelledby="fmtLbl">
           <button type="button" data-p="1200" aria-pressed="false">Demi-journée</button>
           <button type="button" data-p="2000" aria-pressed="true">Journée</button>
         </div>
       </div>
-      <div class="row">
-        <label>Aide estimée</label>
-        <div class="seg" id="aid">
+      <div class="calc-row">
+        <span class="lbl" id="aidLbl">Aide estimée</span>
+        <div class="seg" id="aid" role="group" aria-labelledby="aidLbl">
           <button type="button" data-a="0" aria-pressed="false">Aucune</button>
           <button type="button" data-a="0.5" aria-pressed="true">50 %</button>
         </div>
@@ -187,30 +260,37 @@
   </div>
 </section>
 
-<section class="block" id="apropos">
-  <div class="wrap">
-    <div class="about">
-      <img src="img/steve-portrait.jpg" alt="Portrait de Steve Dallaire">
-      <div class="about-text">
-        <span class="eyebrow">À propos</span>
-        <h2>Bonjour, je m'appelle Steve.</h2>
-        <p>J'enseigne l'informatique depuis plus de 15 ans. J'ai formé des centaines de personnes, souvent des gens qui ne se trouvaient « pas bons en ordi ». Je sais repérer ce qui bloque et l'expliquer avec des mots simples.</p>
-        <p>Je suis aussi programmeur et j'utilise l'IA tous les jours. Ce que je vous montre, je l'ai testé moi-même. Mon but est que vos employés repartent en se disant : « Je suis capable. »</p>
-        <div class="facts">
-          <div><b>15 ans +</b><span>en enseignement de l'informatique</span></div>
-          <div><b>Estrie</b><span>basé à Sherbrooke</span></div>
-          <div><b>Français</b><span>formation 100 % en français</span></div>
-        </div>
-        <div class="certs">Certifications : section prévue pour tes certifications à venir.</div>
+<!-- À PROPOS -->
+<section class="section" id="apropos">
+  <div class="wrap about">
+    <figure class="about-photo reveal">
+      <img src="img/steve-portrait.jpg" alt="Portrait de Steve Dallaire" width="900" height="1350" loading="lazy">
+      <span class="badge"><b>15 ans +</b> en enseignement de l'informatique</span>
+    </figure>
+    <div class="about-text reveal">
+      <span class="eyebrow">À propos</span>
+      <h2>Bonjour, je m'appelle <em>Steve.</em></h2>
+      <p>J'enseigne l'informatique depuis plus de 15 ans. J'ai formé des centaines de personnes, souvent des gens qui ne se trouvaient « pas bons en ordi ». Je sais repérer ce qui bloque et l'expliquer avec des mots simples.</p>
+      <p>Je suis aussi programmeur et j'utilise l'IA tous les jours. Ce site a d'ailleurs été conçu avec l'aide de l'IA. Ce que je vous montre, je l'ai testé moi-même.</p>
+      <blockquote>Mon but : que vos employés repartent en se disant « Je suis capable ».</blockquote>
+      <div class="facts">
+        <div><b>Estrie</b><span>basé à Sherbrooke</span></div>
+        <div><b>100 %</b><span>en français</span></div>
+        <div><b>Sur place</b><span>dans vos locaux</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="block" id="faq" style="background:var(--paper)">
-  <div class="wrap">
-    <div class="section-head"><span class="eyebrow">Questions fréquentes</span><h2>Avant de m'appeler</h2></div>
-    <div class="faq">
+<!-- FAQ -->
+<section class="section tint" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Avant de <em>m'appeler</em></h2>
+      <p>Une autre question? Écrivez-moi, je réponds rapidement.</p>
+    </div>
+    <div class="faq reveal">
       <details><summary>Mes employés sont vraiment débutants. Est-ce que ça va aller?</summary><p>Oui. La formation est faite pour eux. On commence par la base et on avance au rythme du groupe.</p></details>
       <details><summary>Faut-il acheter un abonnement à un outil d'IA?</summary><p>Non. On peut travailler avec les versions gratuites. Si vous avez déjà Microsoft 365 ou Google Workspace, on utilise ce que vous avez.</p></details>
       <details><summary>Est-ce que nos données restent confidentielles?</summary><p>C'est le premier sujet de la journée. Vos employés apprennent quoi ne jamais donner à une IA. Les exercices se font avec des exemples sans données sensibles.</p></details>
@@ -220,40 +300,46 @@
   </div>
 </section>
 
-<section class="band contact" id="contact">
-  <div class="wrap">
-    <div class="info">
+<!-- CONTACT -->
+<section class="dark contact" id="contact">
+  <div class="aurora soft" aria-hidden="true"></div>
+  <div class="wrap contact-in">
+    <div class="contact-info reveal">
       <span class="eyebrow">Contact</span>
-      <h2>Parlons de votre équipe</h2>
+      <h2>Parlons de <em>votre équipe</em></h2>
       <p>Un appel de 30 minutes, sans engagement. Je vous dis honnêtement si la formation est utile pour vous.</p>
       <dl>
-        <dt>Courriel</dt><dd><a href="mailto:stevedallaire@gmail.com">stevedallaire@gmail.com</a></dd>
-        <dt>Téléphone</dt><dd><a href="tel:+18199938011">819 993-8011</a></dd>
-        <dt>Région</dt><dd>Sherbrooke et toute l'Estrie</dd>
+        <div><dt>Courriel</dt><dd><a href="mailto:stevedallaire@gmail.com">stevedallaire@gmail.com</a></dd></div>
+        <div><dt>Téléphone</dt><dd><a href="tel:+18199938011">819 993-8011</a></dd></div>
+        <div><dt>Région</dt><dd>Sherbrooke et toute l'Estrie</dd></div>
       </dl>
+      <img class="contact-photo" src="img/steve-debout.jpg" alt="Steve Dallaire debout, en veston marine" width="900" height="1350" loading="lazy">
     </div>
-    <form id="f">
+    <form id="f" class="reveal">
       <div class="two">
-        <label for="nom">Nom<input id="nom" required></label>
-        <label for="ent">Entreprise<input id="ent"></label>
+        <label for="nom">Nom<input id="nom" autocomplete="name" required></label>
+        <label for="ent">Entreprise<input id="ent" autocomplete="organization"></label>
       </div>
       <div class="two">
-        <label for="mail">Courriel<input id="mail" type="email" required></label>
-        <label for="tel">Téléphone<input id="tel" type="tel"></label>
+        <label for="mail">Courriel<input id="mail" type="email" autocomplete="email" required></label>
+        <label for="tel">Téléphone<input id="tel" type="tel" autocomplete="tel"></label>
       </div>
       <label for="taille">Nombre d'employés à former
         <select id="taille"><option>Moins de 6</option><option selected>6 à 12</option><option>Plus de 12</option></select>
       </label>
       <label for="msg">Ce que vous aimeriez que vos employés sachent faire<textarea id="msg"></textarea></label>
-      <button class="btn primary" type="submit" style="align-self:flex-start">Envoyer ma demande</button>
+      <button class="btn btn-glow" type="submit">Envoyer ma demande <span aria-hidden="true">→</span></button>
       <p class="sent" id="sent" hidden>Merci! Le formulaire sera branché bientôt. En attendant, écrivez-moi à stevedallaire@gmail.com.</p>
     </form>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap"><span>© 2026 Steve Dallaire · Formation IA en entreprise · Sherbrooke, Québec</span></div>
+<footer class="footer">
+  <div class="wrap footer-in">
+    <span class="brand-txt"><b>Steve Dallaire</b><small>Formation IA · Estrie</small></span>
+    <span>© 2026 Steve Dallaire · Sherbrooke, Québec</span>
+  </div>
 </footer>
 
 <script src="js/main.js"></script>
